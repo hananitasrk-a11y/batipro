@@ -1,5 +1,15 @@
 -- Repair migration for databases where the production phases migration was skipped.
-CREATE TABLE IF NOT EXISTS public.chantiers (
+-- The live app schema exposes public.chantier (singular); do not recreate the legacy public.chantiers table.
+DO $$
+BEGIN
+  IF to_regclass('public.chantiers') IS NOT NULL
+     AND to_regclass('public.chantier') IS NULL THEN
+    ALTER TABLE public.chantiers RENAME TO chantier;
+  END IF;
+END
+$$;
+
+CREATE TABLE IF NOT EXISTS public.chantier (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   code TEXT,
   nom TEXT NOT NULL,
@@ -20,7 +30,7 @@ CREATE TABLE IF NOT EXISTS public.chantiers (
 
 CREATE TABLE IF NOT EXISTS public.phases_chantier (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  chantier_id UUID REFERENCES public.chantiers(id) ON DELETE CASCADE,
+  chantier_id UUID,
   code TEXT,
   nom TEXT NOT NULL,
   date_debut DATE,
@@ -33,6 +43,19 @@ CREATE TABLE IF NOT EXISTS public.phases_chantier (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+DO $$
+BEGIN
+  IF to_regclass('public.chantier') IS NOT NULL THEN
+    ALTER TABLE public.phases_chantier
+      DROP CONSTRAINT IF EXISTS phases_chantier_chantier_id_fkey;
+
+    ALTER TABLE public.phases_chantier
+      ADD CONSTRAINT phases_chantier_chantier_id_fkey
+      FOREIGN KEY (chantier_id) REFERENCES public.chantier(id) ON DELETE CASCADE;
+  END IF;
+END
+$$;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON public.phases_chantier TO authenticated;
 GRANT ALL ON public.phases_chantier TO service_role;

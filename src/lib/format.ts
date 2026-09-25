@@ -1,6 +1,10 @@
 export const fmtMoney = (n: number | null | undefined, currency = "MAD") => {
   if (n == null) return "—";
-  return new Intl.NumberFormat("fr-FR", { style: "currency", currency, maximumFractionDigits: 2 }).format(Number(n));
+  const value = new Intl.NumberFormat("fr-FR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(n));
+  return `${value} ${currency}`;
 };
 
 export const fmtDate = (d: string | Date | null | undefined) => {

@@ -1,7 +1,7 @@
 
 CREATE TABLE public.phases_chantier (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  chantier_id uuid REFERENCES public.chantiers(id) ON DELETE CASCADE,
+  chantier_id uuid REFERENCES public.chantier(id) ON DELETE CASCADE,
   code text,
   nom text NOT NULL,
   date_debut date,
@@ -23,7 +23,7 @@ CREATE TRIGGER trg_phases_chantier_updated BEFORE UPDATE ON public.phases_chanti
 
 CREATE TABLE public.taches_chantier (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  chantier_id uuid REFERENCES public.chantiers(id) ON DELETE CASCADE,
+  chantier_id uuid REFERENCES public.chantier(id) ON DELETE CASCADE,
   phase_id uuid REFERENCES public.phases_chantier(id) ON DELETE SET NULL,
   libelle text NOT NULL,
   responsable text,
@@ -46,7 +46,7 @@ CREATE TRIGGER trg_taches_chantier_updated BEFORE UPDATE ON public.taches_chanti
 
 CREATE TABLE public.consommation_constituants (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  chantier_id uuid REFERENCES public.chantiers(id) ON DELETE SET NULL,
+  chantier_id uuid REFERENCES public.chantier(id) ON DELETE SET NULL,
   phase_id uuid REFERENCES public.phases_chantier(id) ON DELETE SET NULL,
   constituant_id uuid REFERENCES public.constituants(id) ON DELETE SET NULL,
   date_conso date NOT NULL DEFAULT CURRENT_DATE,
@@ -67,7 +67,7 @@ CREATE TRIGGER trg_consommation_constituants_updated BEFORE UPDATE ON public.con
 
 CREATE TABLE public.rendement_journalier (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  chantier_id uuid REFERENCES public.chantiers(id) ON DELETE CASCADE,
+  chantier_id uuid REFERENCES public.chantier(id) ON DELETE CASCADE,
   phase_id uuid REFERENCES public.phases_chantier(id) ON DELETE SET NULL,
   date_jour date NOT NULL DEFAULT CURRENT_DATE,
   quantite_produite numeric DEFAULT 0,

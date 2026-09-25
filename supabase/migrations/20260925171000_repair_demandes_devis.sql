@@ -17,27 +17,13 @@ CREATE TABLE IF NOT EXISTS public.demandes_devis (
 GRANT SELECT, INSERT, UPDATE, DELETE ON public.demandes_devis TO authenticated;
 ALTER TABLE public.demandes_devis ENABLE ROW LEVEL SECURITY;
 
-DO $$
-BEGIN
-  IF NOT EXISTS (
-    SELECT 1 FROM pg_policies
-    WHERE schemaname = 'public'
-      AND tablename = 'demandes_devis'
-      AND policyname = 'auth read demandes_devis'
-  ) THEN
-    CREATE POLICY "auth read demandes_devis"
-      ON public.demandes_devis FOR SELECT TO authenticated USING (true);
-  END IF;
+DROP POLICY IF EXISTS "auth read demandes_devis" ON public.demandes_devis;
+CREATE POLICY "auth read demandes_devis"
+  ON public.demandes_devis FOR SELECT TO authenticated USING (true);
 
-  IF NOT EXISTS (
-    SELECT 1 FROM pg_policies
-    WHERE schemaname = 'public'
-      AND tablename = 'demandes_devis'
-      AND policyname = 'auth write demandes_devis'
-  ) THEN
-    CREATE POLICY "auth write demandes_devis"
-      ON public.demandes_devis FOR ALL TO authenticated
-      USING (true) WITH CHECK (true);
-  END IF;
-END
-$$;
+DROP POLICY IF EXISTS "auth write demandes_devis" ON public.demandes_devis;
+CREATE POLICY "auth write demandes_devis"
+  ON public.demandes_devis FOR ALL TO authenticated
+  USING (true) WITH CHECK (true);
+
+NOTIFY pgrst, 'reload schema';

@@ -27,6 +27,7 @@ type Societe = {
   telephone?: string | null;
   email?: string | null;
   site_web?: string | null;
+  logo_url?: string | null;
   devise_defaut?: string | null;
 };
 
@@ -45,6 +46,28 @@ function SocietePage() {
       setLoading(false);
     })();
   }, []);
+
+  const handleLogoChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Le fichier sélectionné doit être une image.");
+      return;
+    }
+
+    try {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = typeof reader.result === "string" ? reader.result : "";
+        setData((current) => ({ ...current, logo_url: result }));
+      };
+      reader.readAsDataURL(file);
+      toast.success("Logo chargé et prêt à être enregistré.");
+    } catch {
+      toast.error("Impossible de charger le logo.");
+    }
+  };
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,6 +118,33 @@ function SocietePage() {
           {field("telephone", "Téléphone", "tel")}
           {field("email", "Email", "email")}
           {field("site_web", "Site web", "url")}
+          <div className="md:col-span-2">
+            <Label>Logo de la société</Label>
+            <div className="mt-2 flex flex-col gap-3 rounded-md border border-dashed p-4 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-center gap-4">
+                {data.logo_url ? (
+                  <img src={data.logo_url} alt="Logo de la société" className="h-16 w-16 rounded-md object-cover border" />
+                ) : (
+                  <div className="grid h-16 w-16 place-items-center rounded-md border border-dashed text-xs text-muted-foreground">Logo</div>
+                )}
+                <div className="text-sm text-muted-foreground">
+                  {data.logo_url ? "Un logo est déjà associé à la société." : "Aucun logo ajouté pour le moment."}
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Input type="file" accept="image/*" onChange={handleLogoChange} className="max-w-xs" />
+                {data.logo_url && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setData((current) => ({ ...current, logo_url: null }))}
+                  >
+                    Retirer
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
           {field("ville", "Ville")}
           <div className="md:col-span-2">{field("adresse", "Adresse")}</div>
         </div>

@@ -16,13 +16,18 @@ export const Route = createFileRoute("/_authenticated/ventes/factures")({
         onClick: async (rows) => {
           try {
             const clients = await fetchLabelsMap("clients", rows.map((r) => r.client_id as string), "raison_sociale");
+            const clientIces = await fetchLabelsMap("clients", rows.map((r) => r.client_id as string), "ice");
             const chantiers = await fetchLabelsMap("chantier", rows.map((r) => r.chantier_id as string), "nom");
             const items: DocOptions[] = rows.map((r) => ({
               kind: "Facture",
               numero: String(r.numero ?? ""),
               date: r.date_facture ? String(r.date_facture) : null,
               echeance: r.echeance ? String(r.echeance) : null,
-              tier: r.client_id ? { titre: "Facturé à", nom: clients[String(r.client_id)] ?? "" } : null,
+              tier: r.client_id ? {
+                titre: "Facturé à",
+                nom: clients[String(r.client_id)] ?? "",
+                details: clientIces[String(r.client_id)] ? [`ICE: ${clientIces[String(r.client_id)]}`] : undefined,
+              } : null,
               chantier: r.chantier_id ? chantiers[String(r.chantier_id)] ?? null : null,
               montant_ht: r.montant_ht as number,
               tva: r.tva as number,
@@ -39,13 +44,14 @@ export const Route = createFileRoute("/_authenticated/ventes/factures")({
         onClick: async (r) => {
           try {
             const clientNom = await fetchLabel("clients", r.client_id as string, "raison_sociale");
+            const clientIce = await fetchLabel("clients", r.client_id as string, "ice");
             const chantierNom = await fetchLabel("chantier", r.chantier_id as string, "nom");
             await generateDocumentPDF({
               kind: "Facture",
               numero: String(r.numero ?? ""),
               date: r.date_facture ? String(r.date_facture) : null,
               echeance: r.echeance ? String(r.echeance) : null,
-              tier: clientNom ? { titre: "Facturé à", nom: clientNom } : null,
+              tier: clientNom ? { titre: "Facturé à", nom: clientNom, details: clientIce ? [`ICE: ${clientIce}`] : undefined } : null,
               chantier: chantierNom,
               montant_ht: r.montant_ht as number,
               tva: r.tva as number,

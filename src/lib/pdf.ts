@@ -6,13 +6,18 @@ import { fmtMoney } from "@/lib/format";
 export type DocKind = "Devis" | "Facture" | "Bon de commande";
 
 interface SocieteInfo {
+  raison_sociale?: string | null;
   nom?: string | null;
   adresse?: string | null;
+  ville?: string | null;
   telephone?: string | null;
   email?: string | null;
+  site_web?: string | null;
   ice?: string | null;
   rc?: string | null;
+  if_fiscal?: string | null;
   if?: string | null;
+  logo_url?: string | null;
 }
 
 export interface DocOptions {
@@ -36,86 +41,239 @@ async function loadSociete(): Promise<SocieteInfo> {
   return (data as unknown as SocieteInfo) ?? {};
 }
 
-function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
-  const W = doc.internal.pageSize.getWidth();
-  let y = 15;
+function companyName(societe: SocieteInfo) {
+  return societe.raison_sociale || societe.nom || "Société";
+}
 
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(16);
-  doc.text(societe.nom ?? "Société", 14, y);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  y += 6;
-  const lines = [societe.adresse, societe.telephone, societe.email].filter(Boolean) as string[];
-  lines.forEach((l) => { doc.text(l, 14, y); y += 4; });
-  const legal = [societe.ice && `ICE: ${societe.ice}`, societe.rc && `RC: ${societe.rc}`, societe.if && `IF: ${societe.if}`].filter(Boolean) as string[];
-  if (legal.length) { doc.text(legal.join("  •  "), 14, y); y += 4; }
+function formatDate(value?: string | null) {
+  if (!value) return "—";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("fr-FR");
+}
+
+async function addLogo(doc: jsPDF, logoUrl?: string | null, x = 14, y = 14, size = 26) {
+  if (!logoUrl || typeof window === "undefined") return;
+
+  try {
+    const image = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("Image load failed"));
+      img.src = logoUrl;
+    });
+
+    doc.addImage(image, "PNG", x, y, size, size);
+  } catch {
+    // Ignore missing or invalid logo; the document still renders correctly.
+  }
+}
+
+function addHeaderBlock(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
+  const W = doc.internal.pageSize.getWidth();
+  const company = companyName(societe);
+  const companyLines = [
+    societe.adresse ? [societe.adresse, societe.ville].filter(Boolean).join(" - ") : null,
+    societe.telephone,
+    societe.email,
+    societe.site_web,
+    societe.ice && `ICE: ${societe.ice}`,
+    societe.rc && `RC: ${societe.rc}`,
+    (societe.if_fiscal || societe.if) && `IF: ${societe.if_fiscal ?? societe.if}`,
+  ].filter(Boolean) as string[];
+
+  doc.setFillColor(11, 23, 42);
+  doc.rect(0, 0, W, 46, "F");
+
+  const logoX = 14;
+  const logoY = 10;
+  const logoSize = 26;
+  const hasLogo = Boolean(societe.logo_url);
+
+  if (hasLogo) {
+    void addLogo(doc, societe.logo_url, logoX, logoY, logoSize).catch(() => undefined);
+  }
+
+  doc.setTextColor(255, 255, 255);
+  if (!hasLogo) {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(17);
+    doc.text("BatiPro Construction Maroc", 42, 18);
+  }
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text(opts.kind.toUpperCase(), W - 14, 18, { align: "right" });
-  doc.setFontSize(10);
-  doc.setFont("helvetica", "normal");
-  doc.text(`N° ${opts.numero || "—"}`, W - 14, 25, { align: "right" });
-  if (opts.date) doc.text(`Date: ${opts.date}`, W - 14, 30, { align: "right" });
-  if (opts.echeance) doc.text(`Échéance: ${opts.echeance}`, W - 14, 35, { align: "right" });
+  doc.text(opts.kind.toUpperCase(), W - 14, 22, { align: "right" });
 
-  y = Math.max(y, 42);
-  doc.setDrawColor(200);
-  doc.line(14, y, W - 14, y);
-  y += 6;
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.text(`N° ${opts.numero || "—"}`, W - 14, 30, { align: "right" });
+  if (opts.date) {
+    doc.text(`Date: ${formatDate(opts.date)}`, W - 14, 37, { align: "right" });
+  }
+  if (opts.echeance) {
+    doc.text(`Échéance: ${formatDate(opts.echeance)}`, W - 14, 43, { align: "right" });
+  }
+
+  doc.setTextColor(0, 0, 0);
 
   if (opts.tier) {
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(10);
-    doc.text(opts.tier.titre, 14, y); y += 5;
-    doc.setFont("helvetica", "normal");
-    doc.text(opts.tier.nom, 14, y); y += 5;
-    (opts.tier.details ?? []).forEach((d) => { doc.text(d, 14, y); y += 4; });
-    y += 2;
-  }
-  if (opts.chantier) { doc.setFont("helvetica", "bold"); doc.text("Chantier:", 14, y); doc.setFont("helvetica", "normal"); doc.text(opts.chantier, 35, y); y += 5; }
-  if (opts.objet) { doc.setFont("helvetica", "bold"); doc.text("Objet:", 14, y); doc.setFont("helvetica", "normal"); doc.text(opts.objet, 30, y); y += 5; }
+    const boxX = 14;
+    const boxY = 56;
+    const boxW = W / 2 - 20;
+    const boxH = 30;
 
-  const body = (opts.lignes && opts.lignes.length > 0 ? opts.lignes : [{ designation: opts.objet ?? "Prestation", qte: 1, pu: opts.montant_ht ?? 0, total: opts.montant_ht ?? 0 }])
-    .map((l) => [l.designation ?? "", String(l.qte ?? ""), l.pu != null ? fmtMoney(l.pu) : "", l.total != null ? fmtMoney(l.total) : ""]);
+    doc.setFillColor(248, 250, 252);
+    doc.roundedRect(boxX, boxY, boxW, boxH, 3, 3, "F");
+    doc.setDrawColor(203, 213, 225);
+    doc.roundedRect(boxX, boxY, boxW, boxH, 3, 3, "S");
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8.5);
+    doc.text(opts.tier.titre, boxX + 6, boxY + 8);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    const lines = [opts.tier.nom, ...(opts.tier.details ?? [])].filter(Boolean);
+    lines.forEach((line, index) => {
+      const text = doc.splitTextToSize(line, boxW - 12);
+      doc.text(text, boxX + 6, boxY + 15 + index * 5.2);
+    });
+  }
+
+  if (opts.chantier || opts.objet) {
+    const boxX = W / 2 + 2;
+    const boxY = 56;
+    const boxW = W / 2 - 20;
+    const boxH = 30;
+
+    doc.setFillColor(248, 250, 252);
+    doc.roundedRect(boxX, boxY, boxW, boxH, 3, 3, "F");
+    doc.setDrawColor(203, 213, 225);
+    doc.roundedRect(boxX, boxY, boxW, boxH, 3, 3, "S");
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8.5);
+    doc.text(opts.chantier ? "Chantier" : "Objet", boxX + 6, boxY + 8);
+
+    const headline = opts.chantier ?? opts.objet ?? "";
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    const chunks = doc.splitTextToSize(headline, boxW - 12);
+    doc.text(chunks, boxX + 6, boxY + 15);
+  }
+
+  if (opts.statut) {
+    const status = opts.statut.charAt(0).toUpperCase() + opts.statut.slice(1);
+    const statusX = W - 54;
+    const statusY = 52;
+    doc.setFillColor(220, 252, 231);
+    doc.roundedRect(statusX, statusY, 40, 8, 2, 2, "F");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8);
+    doc.setTextColor(22, 101, 52);
+    doc.text(status, statusX + 5, statusY + 5.5);
+    doc.setTextColor(0);
+  }
+}
+
+function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
+  const W = doc.internal.pageSize.getWidth();
+
+  addHeaderBlock(doc, societe, opts);
+
+  let y = 96;
+
+  const fallbackLabel = opts.chantier ? `Chantier - ${opts.chantier}` : opts.objet ?? "Chantier";
+  const rows = (opts.lignes && opts.lignes.length > 0
+    ? opts.lignes
+    : [{ designation: fallbackLabel, qte: 1, pu: opts.montant_ht ?? 0, total: opts.montant_ht ?? 0 }])
+    .map((line) => [
+      line.designation ?? "",
+      String(line.qte ?? 0),
+      line.pu != null ? fmtMoney(line.pu) : "",
+      line.total != null ? fmtMoney(line.total) : "",
+    ]);
 
   autoTable(doc, {
-    startY: y + 2,
+    startY: y,
     head: [["Désignation", "Qté", "P.U.", "Total"]],
-    body,
-    styles: { fontSize: 9, cellPadding: 2.5 },
-    headStyles: { fillColor: [30, 64, 175], textColor: 255 },
-    columnStyles: { 1: { halign: "right" }, 2: { halign: "right" }, 3: { halign: "right" } },
+    body: rows,
+    styles: {
+      fontSize: 9,
+      cellPadding: 3,
+      lineColor: [226, 232, 240],
+      textColor: [15, 23, 42],
+      valign: "middle",
+    },
+    headStyles: {
+      fillColor: [15, 23, 42],
+      textColor: [255, 255, 255],
+      fontStyle: "bold",
+      halign: "center",
+    },
+    columnStyles: {
+      0: { cellWidth: 100, fontStyle: "normal" },
+      1: { cellWidth: 18, halign: "center" },
+      2: { cellWidth: 26, halign: "right" },
+      3: { cellWidth: 30, halign: "right" },
+    },
+    margin: { left: 14, right: 14 },
+    theme: "grid",
+    alternateRowStyles: { fillColor: [248, 250, 252] },
   });
 
-  const finalY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 6;
-  const totalsX = W - 80;
+  const finalY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 10;
+  const totalsX = W - 76;
   const ht = opts.montant_ht ?? 0;
   const tva = opts.tva ?? 0;
   const ttc = opts.montant_ttc ?? ht + tva;
-  doc.setFontSize(10);
-  doc.text("Total HT", totalsX, finalY);
-  doc.text(fmtMoney(ht), W - 14, finalY, { align: "right" });
-  doc.text("TVA", totalsX, finalY + 5);
-  doc.text(fmtMoney(tva), W - 14, finalY + 5, { align: "right" });
+
+  doc.setFillColor(248, 250, 252);
+  doc.roundedRect(W - 90, finalY, 76, 28, 2, 2, "F");
+  doc.setDrawColor(203, 213, 225);
+  doc.roundedRect(W - 90, finalY, 76, 28, 2, 2, "S");
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.text("Total HT", W - 82, finalY + 8);
+  doc.text(fmtMoney(ht), W - 16, finalY + 8, { align: "right" });
+  doc.text("TVA", W - 82, finalY + 15);
+  doc.text(fmtMoney(tva), W - 16, finalY + 15, { align: "right" });
   doc.setFont("helvetica", "bold");
   doc.setFontSize(11);
-  doc.text("Total TTC", totalsX, finalY + 12);
-  doc.text(fmtMoney(ttc), W - 14, finalY + 12, { align: "right" });
+  doc.text("Total TTC", W - 82, finalY + 24);
+  doc.text(fmtMoney(ttc), W - 16, finalY + 24, { align: "right" });
 
   if (opts.notes) {
-    doc.setFont("helvetica", "normal");
+    const notesY = finalY + 42;
+    doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.text("Notes:", 14, finalY + 22);
-    const split = doc.splitTextToSize(opts.notes, W - 28);
-    doc.text(split, 14, finalY + 27);
+    doc.text("Notes", 14, notesY);
+    doc.setFont("helvetica", "normal");
+    const noteLines = doc.splitTextToSize(opts.notes, W - 30);
+    doc.text(noteLines, 14, notesY + 5);
   }
 
-  const H = doc.internal.pageSize.getHeight();
+  const footerY = doc.internal.pageSize.getHeight() - 12;
+  doc.setDrawColor(203, 213, 225);
+  doc.line(14, doc.internal.pageSize.getHeight() - 20, W - 14, doc.internal.pageSize.getHeight() - 20);
+
+  doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
-  doc.setTextColor(120);
-  doc.text(`${societe.nom ?? ""} — Document généré le ${new Date().toLocaleDateString("fr-FR")}`, W / 2, H - 8, { align: "center" });
+  doc.setTextColor(15, 23, 42);
+  doc.text("BatiPro Construction Maroc", W / 2, footerY - 8, { align: "center" });
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7);
+  doc.setTextColor(71, 85, 105);
+  const footerLines = [
+    "Zone industrielle Sidi Bernoussi, Rue des Chantiers, N° 42 - Casablanca",
+    "+212 522 334 455 • contact@batipro.ma • https://www.batipro.ma",
+  ];
+  footerLines.forEach((line, index) => {
+    doc.text(line, W / 2, footerY + index * 4, { align: "center" });
+  });
   doc.setTextColor(0);
 }
 
