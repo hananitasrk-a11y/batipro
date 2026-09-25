@@ -29,6 +29,28 @@ $$;
 
 DO $$
 BEGIN
+  IF to_regclass('public.bons_commande') IS NOT NULL
+     AND to_regclass('public.chantier') IS NOT NULL THEN
+    ALTER TABLE public.bons_commande
+      DROP CONSTRAINT IF EXISTS bons_commande_chantier_id_fkey;
+    ALTER TABLE public.bons_commande
+      ADD CONSTRAINT bons_commande_chantier_id_fkey
+      FOREIGN KEY (chantier_id) REFERENCES public.chantier(id) ON DELETE SET NULL;
+  END IF;
+
+  IF to_regclass('public.contrats_sous_traitance') IS NOT NULL
+     AND to_regclass('public.chantier') IS NOT NULL THEN
+    ALTER TABLE public.contrats_sous_traitance
+      DROP CONSTRAINT IF EXISTS contrats_sous_traitance_chantier_id_fkey;
+    ALTER TABLE public.contrats_sous_traitance
+      ADD CONSTRAINT contrats_sous_traitance_chantier_id_fkey
+      FOREIGN KEY (chantier_id) REFERENCES public.chantier(id) ON DELETE SET NULL;
+  END IF;
+END
+$$;
+
+DO $$
+BEGIN
   IF to_regclass('public.demandes_devis') IS NOT NULL
      AND to_regclass('public.chantier') IS NOT NULL THEN
     ALTER TABLE public.demandes_devis
