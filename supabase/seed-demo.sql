@@ -2,6 +2,44 @@
 -- Run after the schema migrations have been applied.
 BEGIN;
 
+DO $$
+DECLARE
+  relation_row RECORD;
+  constraint_definition TEXT;
+BEGIN
+  IF to_regclass('public.chantiers') IS NOT NULL
+     AND to_regclass('public.chantier') IS NOT NULL THEN
+    FOR relation_row IN
+      SELECT c.oid, c.conrelid::regclass AS table_name, c.conname
+      FROM pg_constraint c
+      WHERE c.contype = 'f'
+        AND c.confrelid = 'public.chantiers'::regclass
+    LOOP
+      constraint_definition := replace(
+        pg_get_constraintdef(relation_row.oid),
+        'REFERENCES public.chantiers',
+        'REFERENCES public.chantier'
+      );
+      EXECUTE format('ALTER TABLE %s DROP CONSTRAINT %I', relation_row.table_name, relation_row.conname);
+      EXECUTE format('ALTER TABLE %s ADD CONSTRAINT %I %s', relation_row.table_name, relation_row.conname, constraint_definition);
+    END LOOP;
+  END IF;
+END
+$$;
+
+DO $$
+BEGIN
+  IF to_regclass('public.demandes_devis') IS NOT NULL
+     AND to_regclass('public.chantier') IS NOT NULL THEN
+    ALTER TABLE public.demandes_devis
+      DROP CONSTRAINT IF EXISTS demandes_devis_chantier_id_fkey;
+    ALTER TABLE public.demandes_devis
+      ADD CONSTRAINT demandes_devis_chantier_id_fkey
+      FOREIGN KEY (chantier_id) REFERENCES public.chantier(id) ON DELETE SET NULL;
+  END IF;
+END
+$$;
+
 INSERT INTO public.clients (id, code, raison_sociale, contact, telephone, email, adresse, ville, ice, actif)
 VALUES
   ('10000000-0000-0000-0000-000000000001', 'CL-001', 'Atlas Promotion', 'Nadia El Mansouri', '0522401100', 'contact@atlas-promotion.ma', '12 boulevard Zerktouni', 'Casablanca', '001234567890123', true),
