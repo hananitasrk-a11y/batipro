@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.output/
+.wrangler/
+.vite/
+assets/
+.env
+*.log
+.ftpquota

@@ -1,0 +1,476 @@
+
+> build
+> vite build
+
+The plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the resolve.tsconfigPaths option. You can remove the plugin and set resolve.tsconfigPaths: true in your Vite config instead.
+[36mvite v8.0.16 [32mbuilding client environment for production...[36m[39m
+[2K
+transforming...Ô£ô 3002 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/public/assets/styles-l_LEcI1F.css                          89.39 kB Ôöé gzip:  14.81 kB
+.output/public/assets/achats-CbsFsxKT.js                            0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/caisses-CbsFsxKT.js                           0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/comptabilite-CbsFsxKT.js                      0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/materiel-CbsFsxKT.js                          0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/personnel-CbsFsxKT.js                         0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/production-CbsFsxKT.js                        0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/stocks-CbsFsxKT.js                            0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/transport-CbsFsxKT.js                         0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/ventes-CbsFsxKT.js                            0.14 kB Ôöé gzip:   0.13 kB
+.output/public/assets/loader-circle-C5NwpG6h.js                     0.14 kB Ôöé gzip:   0.15 kB
+.output/public/assets/format-BGd3Rqnx.js                            0.15 kB Ôöé gzip:   0.15 kB
+.output/public/assets/arrow-right-BuaF6RDJ.js                       0.16 kB Ôöé gzip:   0.16 kB
+.output/public/assets/search--tGsjzQe.js                            0.17 kB Ôöé gzip:   0.16 kB
+.output/public/assets/trending-up-Br9-mLQD.js                       0.17 kB Ôöé gzip:   0.17 kB
+.output/public/assets/circle-check-CPE--2xj.js                      0.17 kB Ôöé gzip:   0.16 kB
+.output/public/assets/auth-redirect-Ckj4ZZB7.js                     0.21 kB Ôöé gzip:   0.17 kB
+.output/public/assets/percent-BODyv2pe.js                           0.24 kB Ôöé gzip:   0.18 kB
+.output/public/assets/pencil-nD-oGN2w.js                            0.27 kB Ôöé gzip:   0.22 kB
+.output/public/assets/wrench-BfuzHOhq.js                            0.30 kB Ôöé gzip:   0.23 kB
+.output/public/assets/scroll-text-CrS_qz_l.js                       0.34 kB Ôöé gzip:   0.23 kB
+.output/public/assets/package-BRbRoKRx.js                           0.37 kB Ôöé gzip:   0.25 kB
+.output/public/assets/building-2-B_2EAZxv.js                        0.38 kB Ôöé gzip:   0.24 kB
+.output/public/assets/error-message-Dz4uktvu.js                     0.42 kB Ôöé gzip:   0.26 kB
+.output/public/assets/trash-2-CKaGrZRv.js                           0.42 kB Ôöé gzip:   0.25 kB
+.output/public/assets/database-CSxg78vx.js                          0.44 kB Ôöé gzip:   0.28 kB
+.output/public/assets/handshake-hR2NiAN5.js                         0.44 kB Ôöé gzip:   0.28 kB
+.output/public/assets/file-pen-line-CQZwv1yq.js                     0.46 kB Ôöé gzip:   0.30 kB
+.output/public/assets/donnees.depots-CjlnjwMf.js                    0.48 kB Ôöé gzip:   0.31 kB
+.output/public/assets/donnees.produits-CJwAPfc8.js                  0.51 kB Ôöé gzip:   0.31 kB
+.output/public/assets/materiel.periodiques-DD2odCHN.js              0.51 kB Ôöé gzip:   0.30 kB
+.output/public/assets/users-DRSU3mZR.js                             0.54 kB Ôöé gzip:   0.32 kB
+.output/public/assets/donnees.constituants-Dur8GFtP.js              0.56 kB Ôöé gzip:   0.34 kB
+.output/public/assets/layers-CfpVo4E3.js                            0.58 kB Ôöé gzip:   0.34 kB
+.output/public/assets/triangle-alert-c05IlrmX.js                    0.59 kB Ôöé gzip:   0.33 kB
+.output/public/assets/personnel.absences-CWQYrfyR.js                0.60 kB Ôöé gzip:   0.36 kB
+.output/public/assets/caisses.index-DVogG2EW.js                     0.62 kB Ôöé gzip:   0.36 kB
+.output/public/assets/stocks.analyse-DyXW0Hp6.js                    0.62 kB Ôöé gzip:   0.34 kB
+.output/public/assets/dist-mWRmiDcr.js                              0.63 kB Ôöé gzip:   0.43 kB
+.output/public/assets/dist-C1RJhgYD.js                              0.64 kB Ôöé gzip:   0.39 kB
+.output/public/assets/transport.analyse-BCV1a50p.js                 0.64 kB Ôöé gzip:   0.35 kB
+.output/public/assets/user-cog-DwKtpUjS.js                          0.64 kB Ôöé gzip:   0.33 kB
+.output/public/assets/input-HvQa92Jj.js                             0.65 kB Ôöé gzip:   0.40 kB
+.output/public/assets/label-B6XR5TNc.js                             0.69 kB Ôöé gzip:   0.42 kB
+.output/public/assets/chunk-QTnfLwEv.js                             0.69 kB Ôöé gzip:   0.42 kB
+.output/public/assets/dist-DPI8byI2.js                              0.70 kB Ôöé gzip:   0.45 kB
+.output/public/assets/personnel.avances-DgkTI1cj.js                 0.72 kB Ôöé gzip:   0.40 kB
+.output/public/assets/comptabilite.plan-HTs3H24M.js                 0.74 kB Ôöé gzip:   0.39 kB
+.output/public/assets/personnel.analyse-CiQhs7gt.js                 0.74 kB Ôöé gzip:   0.41 kB
+.output/public/assets/caisses.alimentations-CCMxe0CX.js             0.74 kB Ôöé gzip:   0.41 kB
+.output/public/assets/caisses.depenses-CJKrE5fW.js                  0.75 kB Ôöé gzip:   0.40 kB
+.output/public/assets/ventes.analyse-C1Ng2v5X.js                    0.76 kB Ôöé gzip:   0.41 kB
+.output/public/assets/personnel.pointage-C0m6ib3s.js                0.76 kB Ôöé gzip:   0.40 kB
+.output/public/assets/achats.analyse-CPAuHHdr.js                    0.77 kB Ôöé gzip:   0.40 kB
+.output/public/assets/caisses.analyse-CC-tqIfg.js                   0.79 kB Ôöé gzip:   0.37 kB
+.output/public/assets/materiel.documents-BDxjyqNS.js                0.80 kB Ôöé gzip:   0.41 kB
+.output/public/assets/warehouse-DHr4x2os.js                         0.80 kB Ôöé gzip:   0.38 kB
+.output/public/assets/materiel.analyse-BHaQiXIc.js                  0.81 kB Ôöé gzip:   0.41 kB
+.output/public/assets/badge-CHc8eztn.js                             0.83 kB Ôöé gzip:   0.44 kB
+.output/public/assets/comptabilite.journaux-BKSNF4ah.js             0.83 kB Ôöé gzip:   0.44 kB
+.output/public/assets/transport.index-Cxs-f9WB.js                   0.84 kB Ôöé gzip:   0.43 kB
+.output/public/assets/materiel.transferts-Ci6Spw9A.js               0.84 kB Ôöé gzip:   0.39 kB
+.output/public/assets/stocks.inventaire-DyZPIMug.js                 0.84 kB Ôöé gzip:   0.41 kB
+.output/public/assets/transport.suivi-CEWPjSwc.js                   0.85 kB Ôöé gzip:   0.43 kB
+.output/public/assets/wallet-HDsWkh0V.js                            0.89 kB Ôöé gzip:   0.45 kB
+.output/public/assets/donnees.fournisseurs-Dtebonpx.js              0.90 kB Ôöé gzip:   0.42 kB
+.output/public/assets/materiel.papiers-wFudTo-X.js                  0.90 kB Ôöé gzip:   0.45 kB
+.output/public/assets/production.consommation-C7JUj9_E.js           0.91 kB Ôöé gzip:   0.43 kB
+.output/public/assets/materiel.gasoil-CbKsiOc6.js                   0.95 kB Ôöé gzip:   0.44 kB
+.output/public/assets/donnees.clients-Ce9XIYlK.js                   0.96 kB Ôöé gzip:   0.45 kB
+.output/public/assets/ventes.avoirs-QodDXZfe.js                     0.97 kB Ôöé gzip:   0.46 kB
+.output/public/assets/achats.reglements-t3FJjy-N.js                 0.98 kB Ôöé gzip:   0.45 kB
+.output/public/assets/personnel.conges-B-x-HmrO.js                  0.98 kB Ôöé gzip:   0.49 kB
+.output/public/assets/ventes.index-DIWdR2hU.js                      0.98 kB Ôöé gzip:   0.47 kB
+.output/public/assets/achats.demandes-BapH3Ldv.js                   0.99 kB Ôöé gzip:   0.49 kB
+.output/public/assets/materiel.entretiens-BTbNA6g2.js               0.99 kB Ôöé gzip:   0.45 kB
+.output/public/assets/achats.avoirs-ojFUpg8w.js                     0.99 kB Ôöé gzip:   0.47 kB
+.output/public/assets/production.phases-Cb3XIdTn.js                 1.01 kB Ôöé gzip:   0.49 kB
+.output/public/assets/ventes.retours-B2BJN7zs.js                    1.01 kB Ôöé gzip:   0.47 kB
+.output/public/assets/achats.factures-uE67futa.js                   1.02 kB Ôöé gzip:   0.49 kB
+.output/public/assets/production.rendement-CkucH7z_.js              1.03 kB Ôöé gzip:   0.50 kB
+.output/public/assets/personnel.paie-CLGpnnSQ.js                    1.05 kB Ôöé gzip:   0.49 kB
+.output/public/assets/achats.retours-CirAau-y.js                    1.05 kB Ôöé gzip:   0.48 kB
+.output/public/assets/achats.receptions-Ct5N88--.js                 1.06 kB Ôöé gzip:   0.50 kB
+.output/public/assets/card-4tR-52K7.js                              1.08 kB Ôöé gzip:   0.41 kB
+.output/public/assets/ventes.livraisons-GTYhj5D9.js                 1.09 kB Ôöé gzip:   0.50 kB
+.output/public/assets/materiel.pannes-YfZIAmgf.js                   1.09 kB Ôöé gzip:   0.51 kB
+.output/public/assets/stocks.transferts-D-gShyfp.js                 1.09 kB Ôöé gzip:   0.48 kB
+.output/public/assets/ventes.reglements-CEg-Flu_.js                 1.13 kB Ôöé gzip:   0.49 kB
+.output/public/assets/ventes.commandes-5mQMKbAY.js                  1.16 kB Ôöé gzip:   0.52 kB
+.output/public/assets/production.index-DwDZeq8b.js                  1.18 kB Ôöé gzip:   0.54 kB
+.output/public/assets/personnel.index-C-TM_YYa.js                   1.20 kB Ôöé gzip:   0.52 kB
+.output/public/assets/stocks.index-CpQUcy4M.js                      1.20 kB Ôöé gzip:   0.53 kB
+.output/public/assets/createLucideIcon-okHJBGBo.js                  1.22 kB Ôöé gzip:   0.71 kB
+.output/public/assets/production.taches-DCIgD1qQ.js                 1.22 kB Ôöé gzip:   0.55 kB
+.output/public/assets/materiel.index-DdzQWhwD.js                    1.29 kB Ôöé gzip:   0.55 kB
+.output/public/assets/materiel.locations-B0-8ZIOZ.js                1.29 kB Ôöé gzip:   0.58 kB
+.output/public/assets/button-Bz9yiA6t.js                            1.40 kB Ôöé gzip:   0.68 kB
+.output/public/assets/table-m4O9UAzy.js                             1.67 kB Ôöé gzip:   0.59 kB
+.output/public/assets/comptabilite.index-C8mfYwEH.js                1.81 kB Ôöé gzip:   0.81 kB
+.output/public/assets/donnees-ADAgyvLC.js                           1.82 kB Ôöé gzip:   0.83 kB
+.output/public/assets/scale-BwPPUYDW.js                             2.02 kB Ôöé gzip:   0.77 kB
+.output/public/assets/donnees.index-B9xB8fnL.js                     2.07 kB Ôöé gzip:   0.94 kB
+.output/public/assets/achats.index-BTWG4-7Y.js                      2.29 kB Ôöé gzip:   0.92 kB
+.output/public/assets/donnees.log-DUIAo_ZA.js                       2.32 kB Ôöé gzip:   1.01 kB
+.output/public/assets/ventes.factures-wHQYpOWu.js                   2.38 kB Ôöé gzip:   0.93 kB
+.output/public/assets/ventes.devis-C6ekzRta.js                      2.39 kB Ôöé gzip:   0.93 kB
+.output/public/assets/donnees.societe-DFmz7SxP.js                   2.45 kB Ôöé gzip:   1.23 kB
+.output/public/assets/dist-DhFDliOr.js                              2.46 kB Ôöé gzip:   1.12 kB
+.output/public/assets/comptabilite.balance-Cgzmp7RT.js              3.16 kB Ôöé gzip:   1.07 kB
+.output/public/assets/tabs-D1iiNw39.js                              3.46 kB Ôöé gzip:   1.42 kB
+.output/public/assets/comptabilite.grand-livre-DHu_8pxc.js          3.61 kB Ôöé gzip:   1.32 kB
+.output/public/assets/donnees.utilisateurs-wTvoa5SK.js              3.61 kB Ôöé gzip:   1.55 kB
+.output/public/assets/dashboard-DBlqpn6v.js                         4.17 kB Ôöé gzip:   1.51 kB
+.output/public/assets/checkbox-B2iuM_XF.js                          4.22 kB Ôöé gzip:   1.79 kB
+.output/public/assets/alertes-VSBEbUWL.js                           4.74 kB Ôöé gzip:   1.75 kB
+.output/public/assets/dist-CJYe3K4I.js                              4.78 kB Ôöé gzip:   2.01 kB
+.output/public/assets/dist-BjHvgyxk.js                              4.82 kB Ôöé gzip:   1.97 kB
+.output/public/assets/production.soustraitance-DEGnenQH.js          5.01 kB Ôöé gzip:   1.84 kB
+.output/public/assets/comptabilite.etats-CnG76W2w.js                5.02 kB Ôöé gzip:   1.29 kB
+.output/public/assets/production.analyse-B3CJjVn-.js                5.29 kB Ôöé gzip:   1.58 kB
+.output/public/assets/production.soustraitance-audit-Z0Y1MiVX.js    6.28 kB Ôöé gzip:   2.04 kB
+.output/public/assets/donnees.parametres-DNvZvi8k.js                7.34 kB Ôöé gzip:   2.32 kB
+.output/public/assets/jsx-runtime-BWRPWl8p.js                       7.88 kB Ôöé gzip:   2.98 kB
+.output/public/assets/routes-D9HuH4pj.js                            8.87 kB Ôöé gzip:   2.78 kB
+.output/public/assets/comptabilite.ecritures-OoECLQc8.js            9.03 kB Ôöé gzip:   2.74 kB
+.output/public/assets/crud-table-DHslfjBO.js                        9.20 kB Ôöé gzip:   3.43 kB
+.output/public/assets/auth-Dh-A0odH.js                              9.56 kB Ôöé gzip:   4.05 kB
+.output/public/assets/comptabilite.rapprochement-BzDZVzbi.js       11.16 kB Ôöé gzip:   2.98 kB
+.output/public/assets/dialog-CizS1d46.js                           26.91 kB Ôöé gzip:   9.50 kB
+.output/public/assets/purify.es-CJ-rlsNn.js                        26.92 kB Ôöé gzip:  10.70 kB
+.output/public/assets/utils-B6KiDbIe.js                            27.26 kB Ôöé gzip:   8.69 kB
+.output/public/assets/route-B7MUSJoS.js                           110.33 kB Ôöé gzip:  34.33 kB
+.output/public/assets/index.es-DPiDwhRC.js                        151.52 kB Ôöé gzip:  48.92 kB
+.output/public/assets/html2canvas-3k5U_Ryh.js                     199.56 kB Ôöé gzip:  46.78 kB
+.output/public/assets/analytics-view-BXm35MT4.js                  400.59 kB Ôöé gzip: 105.07 kB
+.output/public/assets/pdf-CquZbuRh.js                             432.99 kB Ôöé gzip: 140.32 kB
+.output/public/assets/index-9INJWju2.js                           601.41 kB Ôöé gzip: 173.77 kB
+
+[32mÔ£ô built in 11.27s[39m
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[36mvite v8.0.16 [32mbuilding ssr environment for production...[36m[39m
+[2K
+transforming...Ô£ô 264 modules transformed.
+rendering chunks...
+computing gzip size...
+node_modules/.nitro/vite/services/ssr/assets/styles-l_LEcI1F.css                         89.39 kB Ôöé gzip: 14.81 kB
+node_modules/.nitro/vite/services/ssr/assets/utils-C_uf36nf.js                            0.18 kB Ôöé gzip:  0.15 kB
+node_modules/.nitro/vite/services/ssr/assets/empty-plugin-adapters-D9UWiqvJ.js            0.22 kB Ôöé gzip:  0.16 kB
+node_modules/.nitro/vite/services/ssr/assets/format-5OjJQhw1.js                           0.26 kB Ôöé gzip:  0.22 kB
+node_modules/.nitro/vite/services/ssr/assets/achats-VgfO32nl.js                           0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/stocks-De74tsO9.js                           0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes-BjD5YMYL.js                           0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/caisses-Dw7svny4.js                          0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel-ChU2ZFW2.js                         0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel-BRkt39Lj.js                        0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/transport-ChywT-mp.js                        0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/production-BZUplbZ7.js                       0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite-B4yhQeqr.js                     0.27 kB Ôöé gzip:  0.20 kB
+node_modules/.nitro/vite/services/ssr/assets/label-DBD1bRRP.js                            0.64 kB Ôöé gzip:  0.38 kB
+node_modules/.nitro/vite/services/ssr/assets/input-B8Q2ztVi.js                            0.75 kB Ôöé gzip:  0.45 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.depots-CU_tE8rN.js                   0.77 kB Ôöé gzip:  0.42 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.periodiques-CHRTdW0s.js             0.77 kB Ôöé gzip:  0.41 kB
+node_modules/.nitro/vite/services/ssr/assets/error-message-CioBpXhk.js                    0.79 kB Ôöé gzip:  0.37 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.produits-BIViUPZn.js                 0.81 kB Ôöé gzip:  0.42 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.constituants-DQNBK93F.js             0.87 kB Ôöé gzip:  0.45 kB
+node_modules/.nitro/vite/services/ssr/assets/auth-redirect-BqX7V0Gr.js                    0.88 kB Ôöé gzip:  0.51 kB
+node_modules/.nitro/vite/services/ssr/assets/stocks.analyse-QUZITuMX.js                   0.91 kB Ôöé gzip:  0.45 kB
+node_modules/.nitro/vite/services/ssr/assets/transport.analyse-CWeGUxgW.js                0.93 kB Ôöé gzip:  0.46 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel.absences-BzCJvu5w.js               0.93 kB Ôöé gzip:  0.47 kB
+node_modules/.nitro/vite/services/ssr/assets/caisses.index-bl3jPtiA.js                    0.96 kB Ôöé gzip:  0.46 kB
+node_modules/.nitro/vite/services/ssr/assets/badge-D1Dupn2y.js                            0.98 kB Ôöé gzip:  0.50 kB
+node_modules/.nitro/vite/services/ssr/assets/checkbox-kt6FvQcE.js                         1.01 kB Ôöé gzip:  0.51 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel.analyse-CsdUnj-d.js                1.07 kB Ôöé gzip:  0.51 kB
+node_modules/.nitro/vite/services/ssr/assets/route-CmA-QGX2.js                            1.07 kB Ôöé gzip:  0.57 kB
+node_modules/.nitro/vite/services/ssr/assets/start-CHjU7Qrs.js                            1.07 kB Ôöé gzip:  0.56 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.analyse-C2ihOfOu.js                   1.09 kB Ôöé gzip:  0.52 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.analyse-PtdKFhnf.js                   1.10 kB Ôöé gzip:  0.51 kB
+node_modules/.nitro/vite/services/ssr/assets/caisses.analyse-BZOr9vmL.js                  1.12 kB Ôöé gzip:  0.49 kB
+node_modules/.nitro/vite/services/ssr/assets/caisses.alimentations-ftkv50QM.js            1.13 kB Ôöé gzip:  0.53 kB
+node_modules/.nitro/vite/services/ssr/assets/caisses.depenses-DXykqYzn.js                 1.14 kB Ôöé gzip:  0.53 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel.avances-Cl3Cfd8M.js                1.14 kB Ôöé gzip:  0.52 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.analyse-PD2QGmOP.js                 1.15 kB Ôöé gzip:  0.52 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel.pointage-CcRtE9CH.js               1.15 kB Ôöé gzip:  0.52 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.documents-DiZ9t5sG.js               1.20 kB Ôöé gzip:  0.52 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.plan-Dh8DC8RI.js                1.20 kB Ôöé gzip:  0.53 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.transferts-CFlpGgFy.js              1.26 kB Ôöé gzip:  0.50 kB
+node_modules/.nitro/vite/services/ssr/assets/stocks.inventaire-BEzkNWEg.js                1.26 kB Ôöé gzip:  0.52 kB
+node_modules/.nitro/vite/services/ssr/assets/transport.index-fk0QXyaZ.js                  1.26 kB Ôöé gzip:  0.54 kB
+node_modules/.nitro/vite/services/ssr/assets/transport.suivi-DMj6PwlG.js                  1.30 kB Ôöé gzip:  0.55 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.papiers-DVyPXrcG.js                 1.34 kB Ôöé gzip:  0.57 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.journaux-B72gztu5.js            1.34 kB Ôöé gzip:  0.57 kB
+node_modules/.nitro/vite/services/ssr/assets/production.consommation-Bnp_r_qi.js          1.35 kB Ôöé gzip:  0.54 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.fournisseurs-B7ScMHSf.js             1.38 kB Ôöé gzip:  0.53 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.gasoil-DVIEhFFq.js                  1.42 kB Ôöé gzip:  0.55 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.reglements-CxRYKnqY.js                1.46 kB Ôöé gzip:  0.58 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.avoirs-CcYvDcFB.js                    1.46 kB Ôöé gzip:  0.58 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.clients-DBh9JsSd.js                  1.47 kB Ôöé gzip:  0.56 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.entretiens-RjiP8xNO.js              1.47 kB Ôöé gzip:  0.56 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.avoirs-CWv1qY6I.js                    1.49 kB Ôöé gzip:  0.59 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.index-BUXSb2oU.js                     1.52 kB Ôöé gzip:  0.60 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.demandes-BOyzr8RW.js                  1.52 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.retours-ZuKhbOTw.js                   1.53 kB Ôöé gzip:  0.59 kB
+node_modules/.nitro/vite/services/ssr/assets/production.phases-BWR6s6E1.js                1.53 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/card-BXjpJ96D.js                             1.55 kB Ôöé gzip:  0.48 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel.conges-Zf5e1s6K.js                 1.56 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.factures-B04I6SqO.js                  1.57 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.retours-nXzJDiCM.js                   1.58 kB Ôöé gzip:  0.60 kB
+node_modules/.nitro/vite/services/ssr/assets/production.rendement-DmZnCICc.js             1.58 kB Ôöé gzip:  0.63 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.receptions-3txX1oCR.js                1.60 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/stocks.transferts-Bdvd9-vB.js                1.61 kB Ôöé gzip:  0.60 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel.paie-BZPzT4Ej.js                   1.61 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/tabs-CCJRliUM.js                             1.63 kB Ôöé gzip:  0.60 kB
+node_modules/.nitro/vite/services/ssr/assets/createStart-Dt05N14y.js                      1.65 kB Ôöé gzip:  0.57 kB
+node_modules/.nitro/vite/services/ssr/assets/button-Bq5vK6RO.js                           1.65 kB Ôöé gzip:  0.77 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.livraisons-CpVRsd1Y.js                1.66 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.reglements-Bj1T_pE6.js                1.67 kB Ôöé gzip:  0.62 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.pannes-BRFD6gCa.js                  1.69 kB Ôöé gzip:  0.64 kB
+node_modules/.nitro/vite/services/ssr/assets/production.index-DS4Yoh8K.js                 1.78 kB Ôöé gzip:  0.68 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.commandes-BB_KtX9p.js                 1.78 kB Ôöé gzip:  0.65 kB
+node_modules/.nitro/vite/services/ssr/assets/personnel.index-CIyru7Te.js                  1.80 kB Ôöé gzip:  0.64 kB
+node_modules/.nitro/vite/services/ssr/assets/stocks.index-BBuhhMsR.js                     1.81 kB Ôöé gzip:  0.66 kB
+node_modules/.nitro/vite/services/ssr/assets/production.taches-BuLLYEF6.js                1.89 kB Ôöé gzip:  0.69 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.index-C8KF76MJ.js                   1.95 kB Ôöé gzip:  0.69 kB
+node_modules/.nitro/vite/services/ssr/assets/materiel.locations-B5-iMucb.js               1.98 kB Ôöé gzip:  0.72 kB
+node_modules/.nitro/vite/services/ssr/assets/table-C0WYWEQX.js                            2.31 kB Ôöé gzip:  0.68 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees-Dl-pXGv1.js                          2.38 kB Ôöé gzip:  0.99 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.index-DU2jCTvO.js                    2.54 kB Ôöé gzip:  1.05 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.index-uijKiR2Q.js               2.56 kB Ôöé gzip:  1.02 kB
+node_modules/.nitro/vite/services/ssr/assets/dialog-B8mBdC_P.js                           3.09 kB Ôöé gzip:  1.00 kB
+node_modules/.nitro/vite/services/ssr/index.js                                            3.27 kB Ôöé gzip:  1.41 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.log-Yj-SXzSL.js                      3.41 kB Ôöé gzip:  1.22 kB
+node_modules/.nitro/vite/services/ssr/assets/achats.index-ChIDA6VA.js                     3.56 kB Ôöé gzip:  1.18 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.factures-ClggDKLQ.js                  3.69 kB Ôöé gzip:  1.19 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.societe-D_VDgDr8.js                  3.72 kB Ôöé gzip:  1.50 kB
+node_modules/.nitro/vite/services/ssr/assets/ventes.devis-nY-I7x06.js                     3.74 kB Ôöé gzip:  1.19 kB
+node_modules/.nitro/vite/services/ssr/assets/client-DWcBeP9U.js                           4.09 kB Ôöé gzip:  1.67 kB
+node_modules/.nitro/vite/services/ssr/assets/pdf-CEbgfzWS.js                              5.15 kB Ôöé gzip:  1.80 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.utilisateurs-D3L1xS6F.js             5.21 kB Ôöé gzip:  1.78 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.balance-9QBql558.js             5.25 kB Ôöé gzip:  1.42 kB
+node_modules/.nitro/vite/services/ssr/assets/analytics-view-Bd2wjWle.js                   5.82 kB Ôöé gzip:  1.90 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.grand-livre-Dg8YoXVU.js         5.96 kB Ôöé gzip:  1.72 kB
+node_modules/.nitro/vite/services/ssr/assets/dashboard-DxzHf-Tb.js                        6.07 kB Ôöé gzip:  1.87 kB
+node_modules/.nitro/vite/services/ssr/assets/alertes-OQgSFmc2.js                          6.76 kB Ôöé gzip:  2.11 kB
+node_modules/.nitro/vite/services/ssr/assets/production.analyse-CnYxdgwu.js               7.90 kB Ôöé gzip:  1.84 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.etats-PHGl3MZj.js               8.29 kB Ôöé gzip:  1.72 kB
+node_modules/.nitro/vite/services/ssr/assets/production.soustraitance-DkcEFHDg.js         8.50 kB Ôöé gzip:  2.25 kB
+node_modules/.nitro/vite/services/ssr/assets/auth-xhamdFAD.js                             8.85 kB Ôöé gzip:  2.91 kB
+node_modules/.nitro/vite/services/ssr/assets/production.soustraitance-audit-Ch_nZk_p.js   9.67 kB Ôöé gzip:  2.41 kB
+node_modules/.nitro/vite/services/ssr/assets/donnees.parametres-87WIAhiB.js              11.08 kB Ôöé gzip:  2.50 kB
+node_modules/.nitro/vite/services/ssr/assets/routes-DJPODgYg.js                          12.19 kB Ôöé gzip:  3.21 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.ecritures-BnSC__n-.js          15.42 kB Ôöé gzip:  3.54 kB
+node_modules/.nitro/vite/services/ssr/assets/crud-table-CJZo0JhX.js                      15.47 kB Ôöé gzip:  4.23 kB
+node_modules/.nitro/vite/services/ssr/assets/comptabilite.rapprochement-dXNwpl0-.js      19.12 kB Ôöé gzip:  3.73 kB
+node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-D5CKlFqY.js      30.23 kB Ôöé gzip:  3.46 kB
+node_modules/.nitro/vite/services/ssr/assets/router-Z5hSTCmj.js                          49.86 kB Ôöé gzip:  7.43 kB
+node_modules/.nitro/vite/services/ssr/assets/route-Dhkj75Vu.js                           53.69 kB Ôöé gzip: 11.44 kB
+node_modules/.nitro/vite/services/ssr/assets/server-Dxe6-4Sw.js                          61.91 kB Ôöé gzip: 15.89 kB
+
+[PLUGIN_TIMINGS] Your build spent significant time in plugins. Here is a breakdown:
+  - tanstack-start-core:import-protection-transform-cache (35%)
+  - tanstack-start-core:import-protection (20%)
+  - tanstack-router:code-splitter:compile-reference-file (18%)
+  - tanstack-router:code-splitter:compile-virtual-file (12%)
+  - vite-tsconfig-paths (11%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+
+[32mÔ£ô built in 6.20s[39m
+[90m[[90mnitro[90m][39m [35mÔùÉ[39m Building [[35mNitro[39m] [2m(preset: [36mcloudflare-module[39m, compatibility: [36m2026-09-25[39m)[22m
+[90m[[90mnitro[90m][39m [32mÔ£ö[39m Generated public [36m.output/public[39m
+[36mvite v8.0.16 [32mbuilding nitro environment for production...[36m[39m
+
+ WARN  inlineDynamicImports option is ignored because the codeSplitting option is specified.
+
+[2K
+transforming...Ô£ô 2943 modules transformed.
+rendering chunks...
+computing gzip size...
+.output/server/_ssr/empty-plugin-adapters-D9UWiqvJ.mjs             0.23 kB Ôöé gzip:   0.16 kB
+.output/server/_ssr/utils-C_uf36nf.mjs                             0.29 kB Ôöé gzip:   0.21 kB
+.output/server/_ssr/format-5OjJQhw1.mjs                            0.31 kB Ôöé gzip:   0.25 kB
+.output/server/_ssr/achats-VgfO32nl.mjs                            0.41 kB Ôöé gzip:   0.26 kB
+.output/server/_ssr/stocks-De74tsO9.mjs                            0.41 kB Ôöé gzip:   0.26 kB
+.output/server/_ssr/ventes-BjD5YMYL.mjs                            0.41 kB Ôöé gzip:   0.27 kB
+.output/server/_ssr/caisses-Dw7svny4.mjs                           0.41 kB Ôöé gzip:   0.26 kB
+.output/server/_ssr/materiel-ChU2ZFW2.mjs                          0.41 kB Ôöé gzip:   0.27 kB
+.output/server/_ssr/personnel-BRkt39Lj.mjs                         0.42 kB Ôöé gzip:   0.27 kB
+.output/server/_ssr/transport-ChywT-mp.mjs                         0.42 kB Ôöé gzip:   0.26 kB
+.output/server/_ssr/production-BZUplbZ7.mjs                        0.42 kB Ôöé gzip:   0.27 kB
+.output/server/_ssr/comptabilite-B4yhQeqr.mjs                      0.42 kB Ôöé gzip:   0.27 kB
+.output/server/_libs/radix-ui__primitive.mjs                       0.42 kB Ôöé gzip:   0.23 kB
+.output/server/_libs/radix-ui__react-direction.mjs                 0.59 kB Ôöé gzip:   0.31 kB
+.output/server/_chunks/ssr-renderer.mjs                            0.60 kB Ôöé gzip:   0.36 kB
+.output/server/_ssr/error-message-CioBpXhk.mjs                     0.83 kB Ôöé gzip:   0.40 kB
+.output/server/_libs/radix-ui__react-label.mjs                     0.87 kB Ôöé gzip:   0.46 kB
+.output/server/_ssr/donnees.depots-CU_tE8rN.mjs                    0.89 kB Ôöé gzip:   0.47 kB
+.output/server/_ssr/materiel.periodiques-CHRTdW0s.mjs              0.90 kB Ôöé gzip:   0.47 kB
+.output/server/_ssr/auth-redirect-BqX7V0Gr.mjs                     0.92 kB Ôöé gzip:   0.54 kB
+.output/server/_ssr/donnees.produits-BIViUPZn.mjs                  0.93 kB Ôöé gzip:   0.48 kB
+.output/server/_ssr/label-DBD1bRRP.mjs                             0.95 kB Ôöé gzip:   0.48 kB
+.output/server/_ssr/donnees.constituants-DQNBK93F.mjs              0.99 kB Ôöé gzip:   0.51 kB
+.output/server/_ssr/stocks.analyse-QUZITuMX.mjs                    1.03 kB Ôöé gzip:   0.51 kB
+.output/server/_libs/tanstack__react-query.mjs                     1.05 kB Ôöé gzip:   0.47 kB
+.output/server/_ssr/transport.analyse-CWeGUxgW.mjs                 1.05 kB Ôöé gzip:   0.52 kB
+.output/server/_ssr/personnel.absences-BzCJvu5w.mjs                1.05 kB Ôöé gzip:   0.53 kB
+.output/server/_ssr/start-CHjU7Qrs.mjs                             1.06 kB Ôöé gzip:   0.57 kB
+.output/server/_ssr/input-B8Q2ztVi.mjs                             1.07 kB Ôöé gzip:   0.57 kB
+.output/server/_ssr/caisses.index-bl3jPtiA.mjs                     1.09 kB Ôöé gzip:   0.52 kB
+.output/server/_ssr/route-CmA-QGX2.mjs                             1.13 kB Ôöé gzip:   0.62 kB
+.output/server/_libs/hookable.mjs                                  1.16 kB Ôöé gzip:   0.51 kB
+.output/server/_ssr/badge-D1Dupn2y.mjs                             1.19 kB Ôöé gzip:   0.55 kB
+.output/server/_ssr/personnel.analyse-CsdUnj-d.mjs                 1.19 kB Ôöé gzip:   0.57 kB
+.output/server/_ssr/ventes.analyse-C2ihOfOu.mjs                    1.21 kB Ôöé gzip:   0.58 kB
+.output/server/_ssr/achats.analyse-PtdKFhnf.mjs                    1.22 kB Ôöé gzip:   0.57 kB
+.output/server/_ssr/caisses.analyse-BZOr9vmL.mjs                   1.24 kB Ôöé gzip:   0.55 kB
+.output/server/_ssr/caisses.alimentations-ftkv50QM.mjs             1.25 kB Ôöé gzip:   0.58 kB
+.output/server/_libs/radix-ui__react-separator.mjs                 1.26 kB Ôöé gzip:   0.57 kB
+.output/server/_ssr/caisses.depenses-DXykqYzn.mjs                  1.27 kB Ôöé gzip:   0.58 kB
+.output/server/_ssr/personnel.avances-Cl3Cfd8M.mjs                 1.27 kB Ôöé gzip:   0.58 kB
+.output/server/_ssr/materiel.analyse-PD2QGmOP.mjs                  1.28 kB Ôöé gzip:   0.58 kB
+.output/server/_ssr/personnel.pointage-CcRtE9CH.mjs                1.28 kB Ôöé gzip:   0.57 kB
+.output/server/_ssr/materiel.documents-DiZ9t5sG.mjs                1.32 kB Ôöé gzip:   0.58 kB
+.output/server/_ssr/comptabilite.plan-Dh8DC8RI.mjs                 1.32 kB Ôöé gzip:   0.59 kB
+.output/server/_ssr/materiel.transferts-CFlpGgFy.mjs               1.38 kB Ôöé gzip:   0.56 kB
+.output/server/_ssr/stocks.inventaire-BEzkNWEg.mjs                 1.38 kB Ôöé gzip:   0.58 kB
+.output/server/_ssr/transport.index-fk0QXyaZ.mjs                   1.39 kB Ôöé gzip:   0.60 kB
+.output/server/_ssr/checkbox-kt6FvQcE.mjs                          1.40 kB Ôöé gzip:   0.61 kB
+.output/server/_ssr/transport.suivi-DMj6PwlG.mjs                   1.42 kB Ôöé gzip:   0.60 kB
+.output/server/_ssr/materiel.papiers-DVyPXrcG.mjs                  1.46 kB Ôöé gzip:   0.62 kB
+.output/server/_ssr/comptabilite.journaux-B72gztu5.mjs             1.46 kB Ôöé gzip:   0.63 kB
+.output/server/_ssr/production.consommation-Bnp_r_qi.mjs           1.48 kB Ôöé gzip:   0.60 kB
+.output/server/_runtime.mjs                                        1.48 kB Ôöé gzip:   0.69 kB
+.output/server/_ssr/donnees.fournisseurs-B7ScMHSf.mjs              1.51 kB Ôöé gzip:   0.59 kB
+.output/server/_ssr/materiel.gasoil-DVIEhFFq.mjs                   1.54 kB Ôöé gzip:   0.61 kB
+.output/server/_ssr/createStart-Dt05N14y.mjs                       1.56 kB Ôöé gzip:   0.57 kB
+.output/server/_ssr/achats.reglements-CxRYKnqY.mjs                 1.58 kB Ôöé gzip:   0.63 kB
+.output/server/_ssr/ventes.avoirs-CcYvDcFB.mjs                     1.59 kB Ôöé gzip:   0.64 kB
+.output/server/_ssr/donnees.clients-DBh9JsSd.mjs                   1.59 kB Ôöé gzip:   0.62 kB
+.output/server/_ssr/materiel.entretiens-RjiP8xNO.mjs               1.59 kB Ôöé gzip:   0.62 kB
+.output/server/_libs/react-is.mjs                                  1.61 kB Ôöé gzip:   0.65 kB
+.output/server/_ssr/achats.avoirs-CWv1qY6I.mjs                     1.61 kB Ôöé gzip:   0.65 kB
+.output/server/_ssr/ventes.index-BUXSb2oU.mjs                      1.64 kB Ôöé gzip:   0.66 kB
+.output/server/_ssr/achats.demandes-BOyzr8RW.mjs                   1.65 kB Ôöé gzip:   0.67 kB
+.output/server/_ssr/ventes.retours-ZuKhbOTw.mjs                    1.65 kB Ôöé gzip:   0.64 kB
+.output/server/_ssr/production.phases-BWR6s6E1.mjs                 1.66 kB Ôöé gzip:   0.68 kB
+.output/server/_ssr/personnel.conges-Zf5e1s6K.mjs                  1.68 kB Ôöé gzip:   0.69 kB
+.output/server/_ssr/achats.factures-B04I6SqO.mjs                   1.69 kB Ôöé gzip:   0.68 kB
+.output/server/_ssr/achats.retours-nXzJDiCM.mjs                    1.70 kB Ôöé gzip:   0.66 kB
+.output/server/_ssr/production.rendement-DmZnCICc.mjs              1.70 kB Ôöé gzip:   0.69 kB
+.output/server/_ssr/achats.receptions-3txX1oCR.mjs                 1.72 kB Ôöé gzip:   0.68 kB
+.output/server/_ssr/stocks.transferts-Bdvd9-vB.mjs                 1.74 kB Ôöé gzip:   0.66 kB
+.output/server/_ssr/personnel.paie-BZPzT4Ej.mjs                    1.74 kB Ôöé gzip:   0.68 kB
+.output/server/_ssr/ventes.livraisons-CpVRsd1Y.mjs                 1.78 kB Ôöé gzip:   0.68 kB
+.output/server/_ssr/ventes.reglements-Bj1T_pE6.mjs                 1.79 kB Ôöé gzip:   0.67 kB
+.output/server/_ssr/materiel.pannes-BRFD6gCa.mjs                   1.81 kB Ôöé gzip:   0.70 kB
+.output/server/_ssr/production.index-DS4Yoh8K.mjs                  1.90 kB Ôöé gzip:   0.74 kB
+.output/server/_ssr/ventes.commandes-BB_KtX9p.mjs                  1.90 kB Ôöé gzip:   0.71 kB
+.output/server/_ssr/personnel.index-CIyru7Te.mjs                   1.92 kB Ôöé gzip:   0.70 kB
+.output/server/_ssr/stocks.index-BBuhhMsR.mjs                      1.93 kB Ôöé gzip:   0.72 kB
+.output/server/_ssr/button-Bq5vK6RO.mjs                            1.96 kB Ôöé gzip:   0.88 kB
+.output/server/_ssr/tabs-CCJRliUM.mjs                              1.96 kB Ôöé gzip:   0.70 kB
+.output/server/_ssr/production.taches-BuLLYEF6.mjs                 2.01 kB Ôöé gzip:   0.75 kB
+.output/server/_ssr/card-BXjpJ96D.mjs                              2.02 kB Ôöé gzip:   0.59 kB
+.output/server/_ssr/materiel.index-C8KF76MJ.mjs                    2.07 kB Ôöé gzip:   0.75 kB
+.output/server/_ssr/materiel.locations-B5-iMucb.mjs                2.10 kB Ôöé gzip:   0.78 kB
+.output/server/_libs/prop-types.mjs                                2.27 kB Ôöé gzip:   0.84 kB
+.output/server/_ssr/donnees-Dl-pXGv1.mjs                           2.78 kB Ôöé gzip:   1.08 kB
+.output/server/_ssr/table-C0WYWEQX.mjs                             2.87 kB Ôöé gzip:   0.80 kB
+.output/server/_ssr/donnees.index-DU2jCTvO.mjs                     2.95 kB Ôöé gzip:   1.14 kB
+.output/server/_ssr/comptabilite.index-uijKiR2Q.mjs                3.02 kB Ôöé gzip:   1.10 kB
+.output/server/_libs/class-variance-authority+clsx.mjs             3.17 kB Ôöé gzip:   1.24 kB
+.output/server/_ssr/ssr.mjs                                        3.21 kB Ôöé gzip:   1.42 kB
+.output/server/_libs/d3-path.mjs                                   3.24 kB Ôöé gzip:   1.16 kB
+.output/server/_libs/radix-ui__react-collection.mjs                3.25 kB Ôöé gzip:   1.02 kB
+.output/server/_ssr/dialog-B8mBdC_P.mjs                            3.60 kB Ôöé gzip:   1.13 kB
+.output/server/_ssr/achats.index-ChIDA6VA.mjs                      3.73 kB Ôöé gzip:   1.25 kB
+.output/server/_ssr/ventes.factures-ClggDKLQ.mjs                   3.86 kB Ôöé gzip:   1.25 kB
+.output/server/_ssr/ventes.devis-nY-I7x06.mjs                      3.90 kB Ôöé gzip:   1.26 kB
+.output/server/_libs/babel__runtime.mjs                            4.01 kB Ôöé gzip:   1.38 kB
+.output/server/_ssr/client-DWcBeP9U.mjs                            4.06 kB Ôöé gzip:   1.70 kB
+.output/server/_ssr/donnees.log-Yj-SXzSL.mjs                       4.37 kB Ôöé gzip:   1.35 kB
+.output/server/_ssr/donnees.societe-D_VDgDr8.mjs                   4.42 kB Ôöé gzip:   1.62 kB
+.output/server/_libs/d3-interpolate.mjs                            5.02 kB Ôöé gzip:   1.61 kB
+.output/server/_ssr/pdf-CEbgfzWS.mjs                               5.23 kB Ôöé gzip:   1.84 kB
+.output/server/_libs/@radix-ui/react-collapsible+[...].mjs         5.67 kB Ôöé gzip:   1.69 kB
+.output/server/_libs/radix-ui__react-tabs.mjs                      5.84 kB Ôöé gzip:   1.69 kB
+.output/server/_ssr/donnees.utilisateurs-D3L1xS6F.mjs              6.22 kB Ôöé gzip:   1.90 kB
+.output/server/_ssr/comptabilite.balance-9QBql558.mjs              6.61 kB Ôöé gzip:   1.54 kB
+.output/server/_libs/lovable.dev__cloud-auth-js.mjs                6.68 kB Ôöé gzip:   2.49 kB
+.output/server/_ssr/analytics-view-Bd2wjWle.mjs                    6.98 kB Ôöé gzip:   2.07 kB
+.output/server/_ssr/dashboard-DxzHf-Tb.mjs                         7.17 kB Ôöé gzip:   2.03 kB
+.output/server/_ssr/comptabilite.grand-livre-Dg8YoXVU.mjs          7.45 kB Ôöé gzip:   1.85 kB
+.output/server/_ssr/alertes-OQgSFmc2.mjs                           7.78 kB Ôöé gzip:   2.25 kB
+.output/server/_libs/d3-array.mjs                                  8.04 kB Ôöé gzip:   2.25 kB
+.output/server/_libs/eventemitter3.mjs                             8.31 kB Ôöé gzip:   2.05 kB
+.output/server/_libs/@radix-ui/react-avatar+[...].mjs              8.73 kB Ôöé gzip:   2.27 kB
+.output/server/_libs/@radix-ui/react-arrow+[...].mjs               8.90 kB Ôöé gzip:   2.82 kB
+.output/server/_ssr/production.analyse-CnYxdgwu.mjs                9.43 kB Ôöé gzip:   1.98 kB
+.output/server/_ssr/production.soustraitance-DkcEFHDg.mjs          9.52 kB Ôöé gzip:   2.38 kB
+.output/server/_libs/h3-v2.mjs                                     9.62 kB Ôöé gzip:   2.98 kB
+.output/server/_ssr/auth-xhamdFAD.mjs                             10.10 kB Ôöé gzip:   3.05 kB
+.output/server/_libs/d3-color.mjs                                 10.35 kB Ôöé gzip:   3.57 kB
+.output/server/_libs/d3-format.mjs                                10.58 kB Ôöé gzip:   3.02 kB
+.output/server/_ssr/comptabilite.etats-PHGl3MZj.mjs               10.59 kB Ôöé gzip:   1.86 kB
+.output/server/_ssr/production.soustraitance-audit-Ch_nZk_p.mjs   11.51 kB Ôöé gzip:   2.55 kB
+.output/server/_libs/fflate.mjs                                   11.88 kB Ôöé gzip:   4.39 kB
+.output/server/_libs/supabase__functions-js.mjs                   12.06 kB Ôöé gzip:   3.29 kB
+.output/server/_ssr/donnees.parametres-87WIAhiB.mjs               12.99 kB Ôöé gzip:   2.63 kB
+.output/server/_libs/tanstack__history.mjs                        13.27 kB Ôöé gzip:   3.88 kB
+.output/server/_ssr/routes-DJPODgYg.mjs                           14.06 kB Ôöé gzip:   3.34 kB
+.output/server/_libs/h3+rou3+srvx.mjs                             14.22 kB Ôöé gzip:   4.23 kB
+.output/server/_libs/fast-equals.mjs                              14.37 kB Ôöé gzip:   3.62 kB
+.output/server/_libs/@radix-ui/react-checkbox+[...].mjs           15.45 kB Ôöé gzip:   4.22 kB
+.output/server/_libs/cmdk.mjs                                     16.60 kB Ôöé gzip:   5.49 kB
+.output/server/_ssr/crud-table-CJZo0JhX.mjs                       17.67 kB Ôöé gzip:   4.42 kB
+.output/server/_ssr/comptabilite.ecritures-BnSC__n-.mjs           18.51 kB Ôöé gzip:   3.71 kB
+.output/server/_libs/@radix-ui/react-tooltip+[...].mjs            19.02 kB Ôöé gzip:   4.42 kB
+.output/server/_ssr/comptabilite.rapprochement-dXNwpl0-.mjs       23.16 kB Ôöé gzip:   3.91 kB
+.output/server/_libs/decimal.js-light.mjs                         23.25 kB Ôöé gzip:   6.88 kB
+.output/server/_libs/d3-shape.mjs                                 24.72 kB Ôöé gzip:   5.02 kB
+.output/server/_libs/@floating-ui/dom+[...].mjs                   25.85 kB Ôöé gzip:   6.56 kB
+.output/server/_libs/@floating-ui/core+[...].mjs                  25.89 kB Ôöé gzip:   6.36 kB
+.output/server/_tanstack-start-manifest_v-D5CKlFqY.mjs            30.28 kB Ôöé gzip:   3.50 kB
+.output/server/_libs/@floating-ui/react-dom+[...].mjs             31.20 kB Ôöé gzip:   7.97 kB
+.output/server/_libs/supabase__supabase-js.mjs                    34.01 kB Ôöé gzip:   9.91 kB
+.output/server/_libs/react-smooth.mjs                             37.83 kB Ôöé gzip:   8.15 kB
+.output/server/_libs/lucide-react.mjs                             41.52 kB Ôöé gzip:   7.87 kB
+.output/server/index.mjs                                          42.40 kB Ôöé gzip:   9.92 kB
+.output/server/_ssr/router-Z5hSTCmj.mjs                           44.88 kB Ôöé gzip:   7.13 kB
+.output/server/_libs/tanstack__query-core.mjs                     47.92 kB Ôöé gzip:  10.65 kB
+.output/server/_libs/supabase__phoenix.mjs                        49.12 kB Ôöé gzip:  12.36 kB
+.output/server/_libs/sonner.mjs                                   51.91 kB Ôöé gzip:  11.77 kB
+.output/server/_ssr/route-Dhkj75Vu.mjs                            57.93 kB Ôöé gzip:  11.79 kB
+.output/server/_libs/d3-scale+[...].mjs                           58.24 kB Ôöé gzip:  12.10 kB
+.output/server/_libs/@radix-ui/react-dropdown-menu+[...].mjs      59.15 kB Ôöé gzip:  11.64 kB
+.output/server/_libs/@radix-ui/react-dialog+[...].mjs             59.97 kB Ôöé gzip:  14.79 kB
+.output/server/_ssr/server-Dxe6-4Sw.mjs                           60.24 kB Ôöé gzip:  15.75 kB
+.output/server/_libs/jspdf-autotable.mjs                          60.73 kB Ôöé gzip:  14.39 kB
+.output/server/_libs/supabase__realtime-js+unenv.mjs              72.70 kB Ôöé gzip:  18.28 kB
+.output/server/_libs/dompurify.mjs                                82.27 kB Ôöé gzip:  23.16 kB
+.output/server/_libs/tailwind-merge.mjs                           88.13 kB Ôöé gzip:  15.66 kB
+.output/server/_libs/@supabase/storage-js+[...].mjs              114.55 kB Ôöé gzip:  21.34 kB
+.output/server/_libs/@tanstack/router-core+[...].mjs             126.40 kB Ôöé gzip:  26.84 kB
+.output/server/_libs/supabase__postgrest-js.mjs                  134.33 kB Ôöé gzip:  24.69 kB
+.output/server/_libs/fast-png+iobuffer+pako.mjs                  142.92 kB Ôöé gzip:  32.94 kB
+.output/server/_libs/lodash.mjs                                  162.79 kB Ôöé gzip:  29.66 kB
+.output/server/_libs/supabase__auth-js.mjs                       298.42 kB Ôöé gzip:  59.03 kB
+.output/server/_libs/html2canvas.mjs                             318.29 kB Ôöé gzip:  63.04 kB
+.output/server/_libs/canvg+[...].mjs                             330.70 kB Ôöé gzip:  72.76 kB
+.output/server/_libs/jspdf.mjs                                   476.73 kB Ôöé gzip: 124.09 kB
+.output/server/_libs/recharts+[...].mjs                          546.73 kB Ôöé gzip: 101.70 kB
+.output/server/_libs/@tanstack/react-router+[...].mjs            657.95 kB Ôöé gzip: 140.15 kB
+
+[32mÔ£ô built in 4.16s[39m
+[90m[[90mnitro[90m][39m [36mÔä╣[39m Using auto generated worker name: [36mtanstack-start-ts[39m
+[36mÔä╣[39m Generated [36m.output/server/wrangler.json[39m
+[36mÔä╣[39m Generated [36m.wrangler/deploy/config.json[39m
+[36mÔä╣[39m Generated [36m.output/public/_headers[39m
+[36mÔä╣[39m Generated [36m.output/nitro.json[39m
+
+[90m[[90mnitro[90m][39m [32mÔ£ö[39m You can preview this build using [36mnpx vite preview[39m
+[90m[[90mnitro[90m][39m [32mÔ£ö[39m You can deploy this build using [36mnpx nitro deploy --prebuilt[39m
