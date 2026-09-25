@@ -9,6 +9,25 @@ BEGIN
 END
 $$;
 
+CREATE TABLE IF NOT EXISTS public.chantier (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  code TEXT,
+  nom TEXT NOT NULL,
+  client_id UUID,
+  adresse TEXT,
+  ville TEXT,
+  date_debut DATE,
+  date_fin_prevue DATE,
+  date_fin_reelle DATE,
+  statut TEXT DEFAULT 'en_cours',
+  montant_marche NUMERIC,
+  avancement NUMERIC DEFAULT 0,
+  chef_chantier TEXT,
+  notes TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 ALTER TABLE public.chantier
   ADD COLUMN IF NOT EXISTS id UUID DEFAULT gen_random_uuid(),
   ADD COLUMN IF NOT EXISTS code TEXT,
