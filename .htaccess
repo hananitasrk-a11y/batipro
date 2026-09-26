@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+<IfModule mod_headers.c>
+  <FilesMatch "^(index|404)\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
