@@ -21,6 +21,7 @@ export interface FieldDef {
   type?: "text" | "number" | "email" | "tel" | "textarea" | "checkbox" | "date" | "select";
   required?: boolean;
   hideInTable?: boolean;
+  defaultValue?: string | number | boolean | null;
   options?: { value: string; label: string }[];
   ref?: { table: string; labelField: string; valueField?: string; orderBy?: string };
 }
@@ -134,6 +135,9 @@ export function CrudTable({ title, description, table, fields, searchFields = []
   const defaultsFromFilter = () => {
     const d: Record<string, unknown> = {};
     if (filter) for (const [k, v] of Object.entries(filter)) if (v) d[k] = v;
+    for (const field of fields) {
+      if (field.defaultValue != null && d[field.name] == null) d[field.name] = field.defaultValue;
+    }
     return d;
   };
   const openNew = () => { setEditing(null); setForm(defaultsFromFilter()); setOpen(true); };

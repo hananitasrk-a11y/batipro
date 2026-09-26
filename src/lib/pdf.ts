@@ -3,7 +3,15 @@ import autoTable from "jspdf-autotable";
 import { supabase } from "@/integrations/supabase/client";
 import { fmtMoney } from "@/lib/format";
 
-export type DocKind = "Devis" | "Facture" | "Bon de commande";
+function formatPdfMoney(value: number | null | undefined): string {
+  if (value == null) return "0 MAD";
+
+  return fmtMoney(value, "MAD")
+    .replace(/\s*\/\s*/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+export type DocKind = "Devis" | "Facture" | "Bon de commande" | "Bon de livraison" | "Bon d'avoir";
 
 interface SocieteInfo {
   raison_sociale?: string | null;
@@ -58,6 +66,7 @@ async function addLogo(doc: jsPDF, logoUrl?: string | null, x = 14, y = 14, size
   try {
     const image = await new Promise<HTMLImageElement>((resolve, reject) => {
       const img = new Image();
+      img.crossOrigin = "anonymous";
       img.onload = () => resolve(img);
       img.onerror = () => reject(new Error("Image load failed"));
       img.src = logoUrl;
@@ -69,7 +78,7 @@ async function addLogo(doc: jsPDF, logoUrl?: string | null, x = 14, y = 14, size
   }
 }
 
-function addHeaderBlock(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
+async function addHeaderBlock(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
   const W = doc.internal.pageSize.getWidth();
   const company = companyName(societe);
   const companyLines = [
@@ -91,7 +100,7 @@ function addHeaderBlock(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
   const hasLogo = Boolean(societe.logo_url);
 
   if (hasLogo) {
-    void addLogo(doc, societe.logo_url, logoX, logoY, logoSize).catch(() => undefined);
+    await addLogo(doc, societe.logo_url, logoX, logoY, logoSize);
   }
 
   doc.setTextColor(255, 255, 255);
@@ -177,10 +186,10 @@ function addHeaderBlock(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
   }
 }
 
-function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
+async function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
   const W = doc.internal.pageSize.getWidth();
 
-  addHeaderBlock(doc, societe, opts);
+  await addHeaderBlock(doc, societe, opts);
 
   let y = 96;
 
@@ -191,8 +200,8 @@ function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
     .map((line) => [
       line.designation ?? "",
       String(line.qte ?? 0),
-      line.pu != null ? fmtMoney(line.pu) : "",
-      line.total != null ? fmtMoney(line.total) : "",
+      line.pu != null ? formatPdfMoney(line.pu) : "",
+      line.total != null ? formatPdfMoney(line.total) : "",
     ]);
 
   autoTable(doc, {
@@ -224,9 +233,9 @@ function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
   });
 
   const finalY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 10;
-  const totalsX = W - 76;
   const ht = opts.montant_ht ?? 0;
-  const tva = opts.tva ?? 0;
+  const computedTva = Math.max(0, (opts.montant_ttc ?? ht) - ht);
+  const tva = opts.tva ?? computedTva;
   const ttc = opts.montant_ttc ?? ht + tva;
 
   doc.setFillColor(248, 250, 252);
@@ -237,32 +246,43 @@ function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.text("Total HT", W - 82, finalY + 8);
-  doc.text(fmtMoney(ht), W - 16, finalY + 8, { align: "right" });
+  doc.text(formatPdfMoney(ht), W - 16, finalY + 8, { align: "right" });
   doc.text("TVA", W - 82, finalY + 15);
-  doc.text(fmtMoney(tva), W - 16, finalY + 15, { align: "right" });
+  doc.text(formatPdfMoney(tva), W - 16, finalY + 15, { align: "right" });
   doc.setFont("helvetica", "bold");
   doc.setFontSize(11);
   doc.text("Total TTC", W - 82, finalY + 24);
-  doc.text(fmtMoney(ttc), W - 16, finalY + 24, { align: "right" });
+  doc.text(formatPdfMoney(ttc), W - 16, finalY + 24, { align: "right" });
 
-  if (opts.notes) {
+  const signBoxX = 14;
+  const signBoxY = finalY + 12;
+  const signBoxW = W / 2 - 22;
+  const signBoxH = 20;
+  doc.setDrawColor(203, 213, 225);
+  doc.roundedRect(signBoxX, signBoxY, signBoxW, signBoxH, 2, 2, "S");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8);
+  doc.text("Cachet et signature :", signBoxX + 6, signBoxY + 9);
+
+  const cleanNotes = (opts.notes ?? "")
+    .replace(/Devis généré automatiquement.*$/gim, "")
+    .replace(/Facture générée automatiquement.*$/gim, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  if (cleanNotes) {
     const notesY = finalY + 42;
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
     doc.text("Notes", 14, notesY);
     doc.setFont("helvetica", "normal");
-    const noteLines = doc.splitTextToSize(opts.notes, W - 30);
+    const noteLines = doc.splitTextToSize(cleanNotes, W - 30);
     doc.text(noteLines, 14, notesY + 5);
   }
 
   const footerY = doc.internal.pageSize.getHeight() - 12;
   doc.setDrawColor(203, 213, 225);
   doc.line(14, doc.internal.pageSize.getHeight() - 20, W - 14, doc.internal.pageSize.getHeight() - 20);
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(8);
-  doc.setTextColor(15, 23, 42);
-  doc.text("BatiPro Construction Maroc", W / 2, footerY - 8, { align: "center" });
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(7);
@@ -280,7 +300,7 @@ function renderDocument(doc: jsPDF, societe: SocieteInfo, opts: DocOptions) {
 export async function generateDocumentPDF(opts: DocOptions) {
   const societe = await loadSociete();
   const doc = new jsPDF({ unit: "mm", format: "a4" });
-  renderDocument(doc, societe, opts);
+  await renderDocument(doc, societe, opts);
   doc.save(`${opts.kind}_${opts.numero || "doc"}.pdf`);
 }
 
@@ -288,10 +308,11 @@ export async function generateDocumentsPDF(items: DocOptions[], filename?: strin
   if (items.length === 0) return;
   const societe = await loadSociete();
   const doc = new jsPDF({ unit: "mm", format: "a4" });
-  items.forEach((opts, i) => {
+  for (let i = 0; i < items.length; i += 1) {
+    const opts = items[i];
     if (i > 0) doc.addPage();
-    renderDocument(doc, societe, opts);
-  });
+    await renderDocument(doc, societe, opts);
+  }
   const kind = items[0].kind;
   doc.save(filename ?? `${kind}_lot_${items.length}.pdf`);
 }
